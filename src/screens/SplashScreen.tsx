@@ -1,16 +1,26 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { FC } from 'react'
+import CustomText from '@components/ui/CustomText'
+import { FONTS } from '@utils/theme'
+import React, { FC, useEffect } from 'react'
+import { StyleSheet, View } from 'react-native'
 import Icon from 'react-native-vector-icons/AntDesign'
-import { COLORS, FONTS } from '@utils/theme'
-import { textScale } from '@utils/responsive'
+import {moderateScaleVertical} from '@utils/responsive';
+import { navigate, resetAndNavigate } from '@utils/navigationUtils'
 
 type Props = {}
 
 const SplashScreen:FC = (props: Props) => {
+    useEffect(() => {
+      const splash = setTimeout(()=>{
+        resetAndNavigate('Gallery');
+      },2000)
+    
+      return () => clearTimeout(splash);
+    }, [])
+    
   return (
     <View style={styles.container}>
-      <Icon name='checkcircle' size={30} color={'teal'}/>
-      <Text style={{fontFamily:FONTS.Theme, color:COLORS.primary, fontSize:textScale(30)}}>Splash Screen</Text>
+      <Icon name='codesquare' size={120} color={'teal'}/>
+      <CustomText variant='h1' fontFamily={FONTS.ExtraBold}>Machine Round</CustomText>
     </View>
   )
 }
@@ -21,6 +31,7 @@ const styles = StyleSheet.create({
     container:{
       flex:1,
       justifyContent:'center',
-      alignItems:'center'
+      alignItems:'center',
+      gap:moderateScaleVertical(10)
     }
   })

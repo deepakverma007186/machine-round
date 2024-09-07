@@ -1,5 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Gallery from '@screens/Gallery';
 import SplashScreen from '@screens/SplashScreen';
 import {navigatonRef} from '@utils/navigationUtils';
 import React, {FC} from 'react';
@@ -16,8 +17,10 @@ const Navigation: FC = (props: Props) => {
         initialRouteName="SplashScreen"
         screenOptions={{
           headerShown: false,
+          animation:'slide_from_right'
         }}>
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
+        <Stack.Screen name="Gallery" component={Gallery} />
       </Stack.Navigator>
     </NavigationContainer>
   );
