@@ -25,6 +25,12 @@ const Gallery = (props: Props) => {
     }
   }, [offset]);
 
+  // Memoized `keyExtractor` to prevent re-renders
+  const keyExtractor = useCallback(item => `${item.id}img`, []);
+
+  // Memoized `renderItem` to prevent unnecessary re-renders
+  const renderItem = useCallback(({item}) => <DisplayImage item={item} />, []);
+
   return (
     <AppSafeAreaView>
       <CustomText
@@ -37,8 +43,8 @@ const Gallery = (props: Props) => {
       <FlatList
         data={data}
         showsVerticalScrollIndicator={false}
-        keyExtractor={item => `${item.id}img`}
-        renderItem={({item}) => <DisplayImage item={item} />}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
         contentContainerStyle={styles.listContainer}
         ListFooterComponent={
           loading ? (

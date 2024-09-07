@@ -26,7 +26,7 @@ export default CustomButton;
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: moderateScaleVertical(16),
+    paddingVertical: moderateScaleVertical(14),
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: COLORS.primary,

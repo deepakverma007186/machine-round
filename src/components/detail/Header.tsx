@@ -21,10 +21,12 @@ const Header = ({title}: Props) => {
       <Pressable
         onPress={() => goBack()}
         style={[styles.backBtnContainer, {left: moderateScale(10)}]}>
-        <Icon name="chevron-back" size={textScale(30)} color={COLORS.primary} />
+        <Icon name="chevron-back" size={textScale(24)} color={COLORS.white} />
       </Pressable>
-
-      <CustomText variant="h2" fontFamily={FONTS.SemiBold}>
+      <CustomText
+        variant="h2"
+        fontFamily={FONTS.SemiBold}
+        style={{color: COLORS.white}}>
         {title}
       </CustomText>
       <View style={styles.backBtnContainer} />
@@ -37,10 +39,13 @@ export default Header;
 const styles = StyleSheet.create({
   container: {
     ...hocStyles.flexRowSpaceBetween,
-    paddingVertical: moderateScaleVertical(6),
+    paddingVertical: moderateScaleVertical(12),
+    backgroundColor: COLORS.primary,
   },
   backBtnContainer: {
     width: 30,
     height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

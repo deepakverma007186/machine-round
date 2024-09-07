@@ -37,26 +37,34 @@ const DetailForm = () => {
   return (
     <AppSafeAreaView>
       <Header title="Detail Screen" />
+      <ShowImage url={imgUrl} />
       <ScrollView
         keyboardShouldPersistTaps={'handled'}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContainer}>
-        <ShowImage url={imgUrl} />
         <CustomInput
-          label="First Name"
+          label="First name"
           placeholder={'Enter first name...'}
           maxLength={50}
+          textInputStyle={{textTransform: 'capitalize'}}
           value={values.first_name}
-          onChangeText={handleChange('first_name')}
+          onChangeText={(text: string) => {
+            const filteredText = text.replace(/[^a-zA-Z]/g, ''); // Remove any non-alphabet characters
+            handleChange('first_name')(filteredText);
+          }}
           onBlur={handleBlur('first_name')}
           error={touched.first_name && errors.first_name && errors.first_name}
         />
         <CustomInput
-          label="Last Name"
+          label="Last name"
           placeholder={'Enter last name...'}
           maxLength={50}
+          textInputStyle={{textTransform: 'capitalize'}}
           value={values.last_name}
-          onChangeText={handleChange('last_name')}
+          onChangeText={(text: string) => {
+            const filteredText = text.replace(/[^a-zA-Z]/g, ''); // Remove any non-alphabet characters
+            handleChange('last_name')(filteredText);
+          }}
           onBlur={handleBlur('last_name')}
           error={touched.last_name && errors.last_name && errors.last_name}
         />
@@ -96,6 +104,6 @@ export default DetailForm;
 const styles = StyleSheet.create({
   scrollContainer: {
     padding: moderateScale(16),
-    rowGap: moderateScaleVertical(10),
+    rowGap: moderateScaleVertical(12),
   },
 });

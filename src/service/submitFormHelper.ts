@@ -11,12 +11,20 @@ export const submitFormHelper = async (
   try {
     setLoading(true);
 
+    // Trim the values to remove extra spaces
+    const trimmedValues = {
+      first_name: values.first_name.trim(),
+      last_name: values.last_name.trim(),
+      email: values.email.trim(),
+      phone: values.phone.trim(),
+    };
+    
     // Create FormData to handle file upload
     const formData = new FormData();
-    formData.append('first_name', values.first_name);
-    formData.append('last_name', values.last_name);
-    formData.append('email', values.email);
-    formData.append('phone', values.phone);
+    formData.append('first_name', trimmedValues.first_name);
+    formData.append('last_name', trimmedValues.last_name);
+    formData.append('email', trimmedValues.email);
+    formData.append('phone', trimmedValues.phone);
 
     // Append image as multipart form data
     if (imgUrl) {

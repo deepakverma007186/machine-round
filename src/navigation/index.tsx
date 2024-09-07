@@ -19,14 +19,13 @@ const Navigation: FC = (props: Props) => {
       <StatusBar
         translucent
         barStyle={'light-content'}
-        backgroundColor={COLORS.transparent}
+        backgroundColor={COLORS.primary}
       />
-      {/* <SafeAreaView
+      <SafeAreaView
         style={{
-          // paddingTop: StatusBar.currentHeight,
-          backgroundColor: COLORS.white,
+          backgroundColor: COLORS.primary,
         }}
-      /> */}
+      />
       <NavigationContainer ref={navigatonRef}>
         <Stack.Navigator
           initialRouteName="SplashScreen"
@@ -39,12 +38,6 @@ const Navigation: FC = (props: Props) => {
           <Stack.Screen name="DetailForm" component={DetailForm} />
         </Stack.Navigator>
       </NavigationContainer>
-      {/* <SafeAreaView
-        style={{
-          paddingBottom: StatusBar.currentHeight,
-          backgroundColor: COLORS.white,
-        }}
-      /> */}
     </>
   );
 };

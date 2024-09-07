@@ -1,7 +1,7 @@
 import {width} from './responsive';
 
 export enum COLORS {
-  primary = '#AF1125',
+  primary = '#0C2B6E',
   white = '#fff',
   black = '#000',
   secondry = '#C71E25',
