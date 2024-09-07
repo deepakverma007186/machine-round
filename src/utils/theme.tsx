@@ -3,9 +3,12 @@ import {width} from './responsive';
 export enum COLORS {
   primary = '#AF1125',
   white = '#fff',
+  black = '#000',
   secondry = '#C71E25',
   border = '#fff',
   text = '#222',
+  transparent = 'transparent',
+  danger = 'red',
 }
 export enum FONTS {
   Regular = 'Okra-Regular',
@@ -25,4 +28,4 @@ export const LIGTHCOLORS = [
   'rgba(255,255,255,0.003)',
 ];
 
-export const RADIUS = width * 0.18;
+export const RADIUS = width * 0.02;

@@ -10,7 +10,9 @@
       "@navigation/*": ["navigation/*"],
       "@service/*": ["service/*"],
       "@styles/*": ["styles/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@hooks/*": ["hooks/*"],
+      "@types/*": ["types/*"],
     }
   }
 }

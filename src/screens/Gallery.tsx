@@ -1,16 +1,84 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import DisplayImage from '@components/gallery/DisplayImage';
+import AppSafeAreaView from '@components/global/AppSafeAreaView';
+import CustomText from '@components/ui/CustomText';
+import useFetchImages from '@hooks/useFetchImages';
+import {moderateScale, moderateScaleVertical} from '@utils/responsive';
+import {COLORS, FONTS, RADIUS} from '@utils/theme';
+import React, {useCallback, useState} from 'react';
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 
-type Props = {}
+type Props = {};
 
 const Gallery = (props: Props) => {
+  const [offset, setOffset] = useState(1);
+
+  const {data, loading, hasMore} = useFetchImages(offset);
+
+  const loadMoreImages = useCallback(() => {
+    if (!loading && hasMore) {
+      setOffset(prevOffset => prevOffset + 1);
+    }
+  }, [offset]);
+
   return (
-    <View>
-      <Text>Gallery</Text>
-    </View>
-  )
-}
+    <AppSafeAreaView>
+      <CustomText
+        variant="h2"
+        fontFamily={FONTS.SemiBold}
+        style={styles.galleryHead}>
+        Gallery
+      </CustomText>
 
-export default Gallery
+      <FlatList
+        data={data}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={item => `${item.id}img`}
+        renderItem={({item}) => <DisplayImage item={item} />}
+        contentContainerStyle={styles.listContainer}
+        ListFooterComponent={
+          loading ? (
+            <ActivityIndicator size={'large'} />
+          ) : (
+            <ListFooterComponent onPress={loadMoreImages} />
+          )
+        }
+      />
+    </AppSafeAreaView>
+  );
+};
 
-const styles = StyleSheet.create({})
+const ListFooterComponent = ({onPress}: any) => {
+  return (
+    <TouchableOpacity style={styles.loadBtn} onPress={onPress}>
+      <CustomText variant="h3">Click here to Load more...</CustomText>
+    </TouchableOpacity>
+  );
+};
+
+export default Gallery;
+
+const styles = StyleSheet.create({
+  galleryHead: {
+    textAlign: 'center',
+    paddingVertical: moderateScaleVertical(16),
+    backgroundColor: COLORS.primary,
+    color: COLORS.white,
+  },
+  listContainer: {
+    padding: moderateScale(16),
+    paddingBottom: moderateScaleVertical(60),
+    rowGap: moderateScaleVertical(16),
+  },
+  loadBtn: {
+    borderRadius: RADIUS,
+    borderCurve: 'continuous',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: moderateScale(20),
+  },
+});
