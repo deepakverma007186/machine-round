@@ -58,10 +58,12 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     borderRadius: RADIUS,
     borderCurve: 'continuous',
-    fontSize: textScale(20),
+    fontSize: textScale(16),
     color: COLORS.black,
     width: width * 0.6,
     paddingHorizontal: moderateScale(10),
+    backgroundColor: '#F5F3F7',
+    fontFamily: FONTS.Medium,
   },
   errorText: {
     marginTop: -moderateScaleVertical(8),
